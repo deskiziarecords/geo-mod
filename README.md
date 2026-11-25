@@ -142,8 +142,8 @@ de Geode renombro algo. Estos son los puntos delicados y su sustituto:
 | `obj->getType() == GameObjectType::Hazard` | `obj->m_objectType == GameObjectType::Hazard` |
 | `obj->getObjectRect()` | `obj->getObjectRect(1.f, 1.f)` |
 | `this->m_objects` / `this->m_player1` | `GJBaseGameLayer::m_objects` / `m_player1` (deberian existir ya) |
-| `FMODAudioEngine::sharedEngine()->playEffect(path, 1.f, 0.f, vol)` | `...->playEffect(path)` |
-| `getResourcesDir().string()` | en v6: `toStdPath().string()` (con `<asp/fs/std.hpp>`) |
+| `FMODAudioEngine::sharedEngine()->playEffect(path, 1.f, 1.f, vol)` | `...->playEffect(path)` (ignora el volumen) |
+| `getResourcesDir() / "x.wav"` + `.string()` | sigue existiendo en v6; si no, `toStdPath().string()` con `<asp/fs/std.hpp>` |
 
 **El mod carga pero no aparece la barra** — revisa que el nivel sea jugable (no el editor), que
 el ajuste principal este activo y que estes corriendo por el suelo. En modo nave/UFO/ola, o
