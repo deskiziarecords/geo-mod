@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <string>
 
 using namespace geode::prelude;
 
@@ -111,10 +112,14 @@ void JumpCueHud::refresh(jumpcue::CueResult const& cue, Style const& style) {
             float const scale = 0.52f + 0.05f * std::sin(m_pulse);
             m_title->setScale(scale);
         } else {
-            m_title->setString(
-                fmt::format(style.spanish ? "en {:.2f}s" : "in {:.2f}s", cue.secondsToWindow)
-                    .c_str()
-            );
+            // fmt requires a compile-time format string, so no ternaries here.
+            std::string text;
+            if (style.spanish) {
+                text = fmt::format("en {:.2f}s", cue.secondsToWindow);
+            } else {
+                text = fmt::format("in {:.2f}s", cue.secondsToWindow);
+            }
+            m_title->setString(text.c_str());
             m_title->setColor(ccc3(255, 214, 60));
             m_title->setScale(0.42f);
             m_pulse = 0.f;
@@ -124,12 +129,13 @@ void JumpCueHud::refresh(jumpcue::CueResult const& cue, Style const& style) {
 
     if (m_sub) {
         if (style.showSubLabel) {
-            m_sub->setString(
-                fmt::format(
-                    style.spanish ? "impacto en {:.2f}s" : "impact in {:.2f}s",
-                    cue.secondsToImpact
-                ).c_str()
-            );
+            std::string text;
+            if (style.spanish) {
+                text = fmt::format("impacto en {:.2f}s", cue.secondsToImpact);
+            } else {
+                text = fmt::format("impact in {:.2f}s", cue.secondsToImpact);
+            }
+            m_sub->setString(text.c_str());
             m_sub->setVisible(true);
             m_sub->setPosition(ccp(0.f, -18.f));
         } else {

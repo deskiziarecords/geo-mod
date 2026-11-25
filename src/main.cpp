@@ -114,7 +114,8 @@ class $modify(JumpCuePlayLayer, PlayLayer) {
 
     void playCueSound(float volume) {
         auto const path = (Mod::get()->getResourcesDir() / "jump_cue.wav").string();
-        FMODAudioEngine::sharedEngine()->playEffect(path, 1.f, 0.f, volume);
+        // (path, speed, unknown, volume) -- keep the two middle ones neutral.
+        FMODAudioEngine::sharedEngine()->playEffect(path, 1.f, 1.f, volume);
     }
 
     void tickCue(float dt) {
