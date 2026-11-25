@@ -1,0 +1,99 @@
+{
+    "geode": "6.0.0",
+    "gd": {
+        "win": "2.2091",
+        "android": "2.2091",
+        "mac": "2.2091",
+        "ios": "2.2091"
+    },
+    "id": "roberto.jump-cue",
+    "name": "Jump Cue",
+    "version": "1.0.0",
+    "developer": "Roberto",
+    "description": "Te indica el momento exacto para saltar: una barra de tiempo, un aviso en pantalla y un sonido cuando la ventana de salto esta abierta.",
+    "settings": {
+        "general-title": {
+            "type": "title",
+            "name": "General"
+        },
+        "enabled": {
+            "type": "bool",
+            "name": "Activar el indicador",
+            "description": "Muestra la barra de tiempo y el aviso de salto durante el juego.",
+            "default": true
+        },
+        "lookahead-seconds": {
+            "type": "float",
+            "name": "Antelacion (segundos)",
+            "description": "Cuanto tiempo hacia delante se calcula la ventana de salto. Mas antelacion = te avisa antes, pero con mas margen de error en niveles rapidos.",
+            "default": 0.8,
+            "min": 0.3,
+            "max": 1.5,
+            "control": {
+                "slider": true,
+                "slider-step": 0.05
+            }
+        },
+        "hitbox-scale": {
+            "type": "float",
+            "name": "Tamano de la caja de colision",
+            "description": "Ajusta lo conservador que es el calculo. Mas pequeno = el aviso llega mas cerca del obstaculo.",
+            "default": 0.85,
+            "min": 0.5,
+            "max": 1.0,
+            "control": {
+                "slider": true,
+                "slider-step": 0.01
+            }
+        },
+        "hud-title": {
+            "type": "title",
+            "name": "Interfaz"
+        },
+        "hud-position": {
+            "type": "string",
+            "name": "Posicion de la barra",
+            "default": "Abajo",
+            "one-of": ["Abajo", "Arriba"]
+        },
+        "show-impact": {
+            "type": "bool",
+            "name": "Mostrar tiempo hasta el impacto",
+            "description": "Anade debajo de la barra el tiempo que falta para chocar si no saltas.",
+            "default": true
+        },
+        "language": {
+            "type": "string",
+            "name": "Idioma del aviso",
+            "default": "Español",
+            "one-of": ["Español", "English"]
+        },
+        "audio-title": {
+            "type": "title",
+            "name": "Sonido"
+        },
+        "sound": {
+            "type": "bool",
+            "name": "Aviso sonoro",
+            "description": "Reproduce un pitido en el momento exacto en que la ventana de salto se abre.",
+            "default": true
+        },
+        "volume": {
+            "type": "float",
+            "name": "Volumen del aviso",
+            "default": 0.6,
+            "min": 0.0,
+            "max": 1.0,
+            "control": {
+                "slider": true,
+                "slider-step": 0.05
+            },
+            "enable-if": "sound"
+        }
+    },
+    "resources": {
+        "files": [
+            "resources/jump_cue.wav"
+        ]
+    }
+}

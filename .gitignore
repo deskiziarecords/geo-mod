@@ -1,0 +1,21 @@
+# Build
+build/
+*.geode
+
+# IDE
+.vscode/
+.idea/
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+out/
+
+# Sistema
+.DS_Store
+Thumbs.db
